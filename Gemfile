@@ -36,10 +36,12 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
-
-
+gem "apollo_upload_server"
+gem "image_processing", ">= 1.2"
 gem 'bcrypt', '~> 3.1.7'
 gem "graphql", "~> 2.3"
 gem 'graphiql-rails', group: :development
 gem 'jwt'
 gem "propshaft", "~> 0.9.1"
+gem 'activestorage', '~> 7.0'
+
