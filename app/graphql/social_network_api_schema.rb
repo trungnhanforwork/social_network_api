@@ -42,8 +42,4 @@ class SocialNetworkApiSchema < GraphQL::Schema
     # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
     GlobalID.find(global_id)
   end
-  def self.execute(query, variables: {}, context: {}, operation_name: nil)
-    context[:current_user] = current_user # Set the current user in the context
-    super
-  end
 end
