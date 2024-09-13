@@ -60,15 +60,26 @@ module Types
       end
     end
 
-    field [:search_users, [Types::User]], null: true, description: "Search profile relative by username or email" do
+    # field [:search_users, [ Types::UserType]], null: true, description: "Search profile relative by username or email" do
+    #   argument :email, String, required: false
+    #   argument :username, String, required: false
+    # end
+    # def search_users(email:, username:)
+    #   users = User.all
+    #   users = users.where("email ILIKE ?", "%#{email}%") if email.present?
+    #   users = users.where("username ILIKE ?", "%#{username}%") if username.present?
+    #   return [] if users.empty?
+    #   users
+    # end
+    field :search_users, [Types::UserType], null: true, description: "Search profile relative by username or email" do
       argument :email, String, required: false
       argument :username, String, required: false
     end
-    def search_users(email:, username:)
+
+    def search_users(email: nil, username: nil)
       users = User.all
       users = users.where("email ILIKE ?", "%#{email}%") if email.present?
       users = users.where("username ILIKE ?", "%#{username}%") if username.present?
-      return [] if users.empty?
       users
     end
   end

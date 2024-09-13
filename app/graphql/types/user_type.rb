@@ -16,6 +16,7 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
   end
+
   def profile_image_url
     object.profile_image.attached? ? Rails.application.routes.url_helpers.rails_blob_url(object.profile_image, only_path: true) : nil
   end
