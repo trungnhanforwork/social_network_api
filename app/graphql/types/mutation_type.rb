@@ -17,5 +17,8 @@ module Types
 
     field :follow_user, mutation: Mutations::FollowUserMutation
     field :unfollow_user, mutation: Mutations::UnfollowUserMutation
+
+    field :verify_and_send_email_reset_password, mutation: Mutations::VerifyAndSendEmailResetPassword
+    field :reset_password, mutation: Mutations::ResetPassword
   end
 end
