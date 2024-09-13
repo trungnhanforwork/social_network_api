@@ -46,7 +46,7 @@ module Types
       raise GraphQL::ExecutionError, "Post not found"
     end
 
-    field :following_posts, [Types::PostType], null: true, description: "Fetch posts of following."
+    field :following_posts, [ Types::PostType ], null: true, description: "Fetch posts of following."
     def following_posts
       current_user = context[:current_user]
       return [] unless current_user.present?
