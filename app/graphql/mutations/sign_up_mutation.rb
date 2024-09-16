@@ -7,17 +7,19 @@ module Mutations
     argument :password_confirmation, String, required: true
 
     field :user, Types::UserType, null: true
-    field :errors, [String], null: false
+    field :errors, [ String ], null: false
     field :token, String, null: true
 
     def resolve(email:, username:, password:, password_confirmation:)
+      if password != password_confirmation
+        return { token: nil, user: nil, errors: [ "Passwords do not match" ] }
+      end
       user = User.new(
         username: username,
         email: email,
         password: password,
         password_confirmation: password_confirmation
       )
-
       if user.save
         token = JsonWebToken.encode(user_id: user.id)
         { token: token, user: user, errors: [] }
