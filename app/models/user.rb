@@ -29,6 +29,15 @@ class User < ApplicationRecord
     save!
   end
 
+  def profile_image_url
+    # Return the URL only if an image is attached, otherwise return nil
+    if profile_image.attached?
+      Rails.application.routes.url_helpers.rails_blob_url(profile_image, only_path: true)
+    else
+      nil  # Return nil if no profile image is attached
+    end
+  end
+
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 end

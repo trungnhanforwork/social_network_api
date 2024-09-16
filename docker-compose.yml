@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    command: "./bin/rails server"
+    ports:
+      - "3000:3000"
+    volumes:
+      - app-storage:/rails/storage
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SECRET_KEY_BASE=${RAILS_MASTER_KEY}
+    depends_on:
+      - db
+    networks:
+      - common_network
+
+  db:
+    image: postgres:15
+    container_name: postgresql
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - common_network
+networks:
+  common_network:
+volumes:
+  postgres_data: {}
+  app-storage: {}
