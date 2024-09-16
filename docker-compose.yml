@@ -38,5 +38,3 @@ networks:
 volumes:
   postgres_data: {}
   app-storage: {}
-
-

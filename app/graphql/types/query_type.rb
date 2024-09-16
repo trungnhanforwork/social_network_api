@@ -72,14 +72,12 @@ module Types
     #   users
     # end
     field :search_users, [Types::UserType], null: true, description: "Search profile relative by username or email" do
-      argument :email, String, required: false
-      argument :username, String, required: false
+      argument :search_param, String, required: true, description: "Search param"
     end
 
-    def search_users(email: nil, username: nil)
+    def search_users(search_param:)
       users = User.all
-      users = users.where("email ILIKE ?", "%#{email}%") if email.present?
-      users = users.where("username ILIKE ?", "%#{username}%") if username.present?
+      users = users.where("email ILIKE :search OR username ILIKE :search", search: "%#{search_param}%")
       users
     end
   end

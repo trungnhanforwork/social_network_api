@@ -18,6 +18,6 @@ module Types
   end
 
   def profile_image_url
-    object.profile_image.attached? ? Rails.application.routes.url_helpers.rails_blob_url(object.profile_image, only_path: true) : nil
+    object.profile_image_url
   end
 end
