@@ -40,7 +40,7 @@ gem "apollo_upload_server"
 gem "image_processing", ">= 1.2"
 gem 'bcrypt', '~> 3.1.7'
 gem "graphql", "~> 2.3"
-gem 'graphiql-rails', group: :development
+gem 'graphiql-rails'
 gem 'jwt'
 gem "propshaft", "~> 0.9.1"
 gem 'activestorage', '~> 7.0'
