@@ -42,6 +42,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem "graphql", "~> 2.3"
 gem 'graphiql-rails'
 gem 'jwt'
-gem "propshaft", "~> 0.9.1"
+gem "propshaft", "~> 1.1.0"
 gem 'activestorage', '~> 7.0'
 
